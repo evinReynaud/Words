@@ -16,6 +16,12 @@ plugins {
 dependencies {
     // This dependency is used by the application.
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
+
+    // Use the Kotlin test library.
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    // Use the Kotlin JUnit integration.
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
