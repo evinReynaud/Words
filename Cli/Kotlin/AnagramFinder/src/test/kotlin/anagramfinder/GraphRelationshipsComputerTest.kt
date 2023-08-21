@@ -14,12 +14,14 @@ class GraphRelationshipsComputerTest {
         )
 
         val expected = setOf(
-            AnagramConnection("ABC", 1, 4) to AnagramConnection("AB", 2, 2),
-            AnagramConnection("ABC", 1, 4) to AnagramConnection("AC", 1, 1),
-            AnagramConnection("TEST", 1, 1) to null
+            AnagramConnection("ABC", 1, 4) to setOf(
+                AnagramConnection("AB", 2, 2),
+                AnagramConnection("AC", 1, 1)
+            ),
+            AnagramConnection("TEST", 1, 1) to emptySet()
         )
 
-        val result = GraphRelationshipsComputer().compute(anagrams)
+        val result = GraphRelationshipsComputer.compute(anagrams)
 
         assertEquals(expected, result)
     }
@@ -35,13 +37,19 @@ class GraphRelationshipsComputerTest {
         )
 
         val expected = setOf(
-            AnagramConnection("ABBCC", 1, 7) to AnagramConnection("ABBC", 2, 5),
-            AnagramConnection("ABBCC", 1, 7) to AnagramConnection("ACC", 1, 1),
-            AnagramConnection("ABBC", 2, 5) to AnagramConnection("ABC", 3, 3),
-            AnagramConnection("AABC", 1, 4) to AnagramConnection("ABC", 3, 3)
+            AnagramConnection("ABBCC", 1, 7) to setOf(
+                AnagramConnection("ABBC", 2, 5),
+                AnagramConnection("ACC", 1, 1)
+            ),
+            AnagramConnection("ABBC", 2, 5) to setOf(
+                AnagramConnection("ABC", 3, 3)
+            ),
+            AnagramConnection("AABC", 1, 4) to setOf(
+                AnagramConnection("ABC", 3, 3)
+            )
         )
 
-        val result = GraphRelationshipsComputer().compute(anagrams)
+        val result = GraphRelationshipsComputer.compute(anagrams)
 
         assertEquals(expected, result)
     }
@@ -59,18 +67,26 @@ class GraphRelationshipsComputerTest {
         )
 
         val expected = setOf(
-            AnagramConnection("EESTT", 2, 15) to AnagramConnection("EEST", 3, 9),
-            AnagramConnection("EESTT", 2, 15) to AnagramConnection("ESTT", 2, 7),
-            AnagramConnection("EESTT", 2, 15) to AnagramConnection("EETT", 1, 4),
-            AnagramConnection("EEST", 3, 9) to AnagramConnection("EET", 2, 2),
-            AnagramConnection("EEST", 3, 9) to AnagramConnection("EST", 4, 4),
-            AnagramConnection("ESTT", 2, 7) to AnagramConnection("EST", 4, 4),
-            AnagramConnection("ESTT", 2, 7) to AnagramConnection("ETT", 1, 1),
-            AnagramConnection("EETT", 1, 4) to AnagramConnection("EET", 2, 2),
-            AnagramConnection("EETT", 1, 4) to AnagramConnection("ETT", 1, 1)
+            AnagramConnection("EESTT", 2, 15) to setOf(
+                AnagramConnection("EEST", 3, 9),
+                AnagramConnection("ESTT", 2, 7),
+                AnagramConnection("EETT", 1, 4)
+            ),
+            AnagramConnection("EEST", 3, 9) to setOf(
+                AnagramConnection("EET", 2, 2),
+                AnagramConnection("EST", 4, 4)
+            ),
+            AnagramConnection("ESTT", 2, 7) to setOf(
+                AnagramConnection("EST", 4, 4),
+                AnagramConnection("ETT", 1, 1)
+            ),
+            AnagramConnection("EETT", 1, 4) to setOf(
+                AnagramConnection("EET", 2, 2),
+                AnagramConnection("ETT", 1, 1)
+            )
         )
 
-        val result = GraphRelationshipsComputer().compute(anagrams)
+        val result = GraphRelationshipsComputer.compute(anagrams)
 
         assertEquals(expected, result)
     }
@@ -88,18 +104,26 @@ class GraphRelationshipsComputerTest {
         )
 
         val expected = setOf(
-            AnagramConnection("TESTE", 2, 15) to AnagramConnection("ETES", 3, 9),
-            AnagramConnection("TESTE", 2, 15) to AnagramConnection("TEST", 2, 7),
-            AnagramConnection("TESTE", 2, 15) to AnagramConnection("TETE", 1, 4),
-            AnagramConnection("ETES", 3, 9) to AnagramConnection("ETE", 2, 2),
-            AnagramConnection("ETES", 3, 9) to AnagramConnection("TES", 4, 4),
-            AnagramConnection("TEST", 2, 7) to AnagramConnection("TES", 4, 4),
-            AnagramConnection("TEST", 2, 7) to AnagramConnection("TET", 1, 1),
-            AnagramConnection("TETE", 1, 4) to AnagramConnection("ETE", 2, 2),
-            AnagramConnection("TETE", 1, 4) to AnagramConnection("TET", 1, 1)
+            AnagramConnection("TESTE", 2, 15) to setOf(
+                AnagramConnection("ETES", 3, 9),
+                AnagramConnection("TEST", 2, 7),
+                AnagramConnection("TETE", 1, 4)
+            ),
+            AnagramConnection("ETES", 3, 9) to setOf(
+                AnagramConnection("ETE", 2, 2),
+                AnagramConnection("TES", 4, 4),
+            ),
+            AnagramConnection("TEST", 2, 7) to setOf(
+                AnagramConnection("TES", 4, 4),
+                AnagramConnection("TET", 1, 1),
+            ),
+            AnagramConnection("TETE", 1, 4) to setOf(
+                AnagramConnection("ETE", 2, 2),
+                AnagramConnection("TET", 1, 1)
+            )
         )
 
-        val result = GraphRelationshipsComputer().compute(anagrams)
+        val result = GraphRelationshipsComputer.compute(anagrams)
 
         assertEquals(expected, result)
     }
