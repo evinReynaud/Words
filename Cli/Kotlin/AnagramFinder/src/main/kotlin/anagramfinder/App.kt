@@ -9,16 +9,28 @@ import kotlinx.cli.ArgType
 class App {
     companion object {
         const val appName = "AnagramFinder CLI App"
-        const val version = "0.0.2"
     }
 }
 
 fun main(args: Array<String>) {
-    val parser = ArgParser("${App.appName}:: ${App.version}")
-    val version by parser.option(ArgType.Boolean, shortName = "v", description = "Version", fullName = "version")
+    val parser = ArgParser(App.appName)
+    val inputFile by parser.argument(ArgType.String, description = "Input file")
+    val outputFile by parser.option(ArgType.String, shortName = "o", description = "Output file")
 
-    // Add all input to parser
     parser.parse(args)
 
-    if(version == true) println(App.version)
+
+    ErrorManager().run {
+        FileUtils.readFile(inputFile)
+            .let { InputParser.parse(it) }
+            .let { GraphRelationshipsComputer.compute(it) }
+            .let { GraphFormatter().format(it) }
+            .let {
+                if (!outputFile.isNullOrBlank()) {
+                    FileUtils.writeToFile(outputFile!!, it)
+                } else {
+                    println(it)
+                }
+            }
+    }
 }
