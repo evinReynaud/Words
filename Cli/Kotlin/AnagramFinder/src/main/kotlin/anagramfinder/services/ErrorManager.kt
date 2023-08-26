@@ -1,4 +1,4 @@
-package anagramfinder
+package anagramfinder.services
 
 class ErrorManager {
     fun run(block: () -> Unit) {

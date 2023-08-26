@@ -1,5 +1,8 @@
 package anagramfinder
 
+import anagramfinder.models.AnagramConnection
+import anagramfinder.models.AnagramMetadata
+import anagramfinder.services.GraphRelationshipsComputer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

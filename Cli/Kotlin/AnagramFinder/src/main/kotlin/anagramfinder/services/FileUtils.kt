@@ -1,4 +1,4 @@
-package anagramfinder
+package anagramfinder.services
 
 import java.io.BufferedReader
 import java.io.File

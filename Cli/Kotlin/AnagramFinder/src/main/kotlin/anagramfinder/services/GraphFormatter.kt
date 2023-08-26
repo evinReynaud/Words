@@ -1,4 +1,6 @@
-package anagramfinder
+package anagramfinder.services
+
+import anagramfinder.models.AnagramConnection
 
 class GraphFormatter(
     private val graphHeader: String = "digraph {",

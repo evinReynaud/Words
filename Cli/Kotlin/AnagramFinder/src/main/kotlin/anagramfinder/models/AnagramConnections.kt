@@ -1,4 +1,4 @@
-package anagramfinder
+package anagramfinder.models
 
 data class AnagramConnection (
     val name: String,

@@ -1,5 +1,6 @@
 package anagramfinder
 
+import anagramfinder.models.AnagramMetadata
 import org.junit.Test
 import kotlin.test.assertEquals
 

@@ -1,4 +1,7 @@
-package anagramfinder
+package anagramfinder.services
+
+import anagramfinder.models.AnagramConnection
+import anagramfinder.models.AnagramMetadata
 
 class GraphRelationshipsComputer {
 
@@ -71,12 +74,12 @@ class GraphRelationshipsComputer {
             link.anagram.sortedLetters,
             link.anagram.anagramCount,
             getChildrenValues(link).fold(0) { acc, (_, v) -> acc + v },
-            link.children.map(::computeCompoundForSelfAndChildren)
+            link.children.map(Companion::computeCompoundForSelfAndChildren)
         )
 
         private fun getChildrenValues(link: AnagramLink): Set<Pair<String, Int>> =
             setOf(Pair(link.anagram.sortedLetters, link.anagram.anagramCount))
-                .plus(link.children.flatMap(::getChildrenValues))
+                .plus(link.children.flatMap(Companion::getChildrenValues))
 
         private fun computePairs(
             computedMap: Map<String, AnagramConnectionLink>
@@ -89,7 +92,8 @@ class GraphRelationshipsComputer {
         ): Set<Pair<AnagramConnection, Set<AnagramConnection>>> =
             link.children.takeUnless { it.isEmpty() }
                 ?.let { children ->
-                    setOf(AnagramConnection(link.name, link.ownAnagrams, link.compoundAnagrams) to
+                    setOf(
+                        AnagramConnection(link.name, link.ownAnagrams, link.compoundAnagrams) to
                             children.map { AnagramConnection(it.name, it.ownAnagrams, it.compoundAnagrams) }.toSet()
                     )
                         .plus(children.flatMap { computePairsForLink(it, true) }.toSet())

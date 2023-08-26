@@ -1,5 +1,7 @@
 package anagramfinder
 
+import anagramfinder.models.AnagramConnection
+import anagramfinder.services.GraphFormatter
 import org.junit.Test
 import kotlin.test.assertEquals
 

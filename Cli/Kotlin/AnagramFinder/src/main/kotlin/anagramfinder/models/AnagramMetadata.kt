@@ -1,4 +1,4 @@
-package anagramfinder
+package anagramfinder.models
 
 data class AnagramMetadata(
     val letters: String,

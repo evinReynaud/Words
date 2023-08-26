@@ -1,5 +1,6 @@
-package anagramfinder
+package anagramfinder.services
 
+import anagramfinder.models.AnagramMetadata
 import java.io.BufferedReader
 
 class InputParser {
